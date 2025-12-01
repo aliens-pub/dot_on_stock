@@ -1,0 +1,359 @@
+.transaction-modal {
+  max-width: 500px;
+}
+
+.transaction-modal-enhanced {
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.transaction-form {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+}
+
+.form-input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+select.form-input {
+  cursor: pointer;
+}
+
+select.form-input:disabled {
+  cursor: not-allowed;
+}
+
+/* Toggle Switch for Buy/Sell */
+.toggle-switch {
+  display: flex;
+  gap: 10px;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.toggle-button:hover:not(:disabled) {
+  border-color: #007bff;
+}
+
+.toggle-button.active {
+  color: white;
+}
+
+.toggle-button.active.buy {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.toggle-button.active.sell {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.toggle-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Date Input Group */
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-date-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.quick-date-buttons button {
+  flex: 1;
+  min-width: 70px;
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-date-buttons button:hover:not(:disabled) {
+  background-color: #e7f3ff;
+  border-color: #007bff;
+}
+
+.quick-date-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.price-preview {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #e7f3ff;
+  border-left: 3px solid #007bff;
+  color: #004085;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* Quantity Input Group */
+.quantity-input-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.quantity-input {
+  flex: 1;
+  text-align: center;
+}
+
+.qty-button {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 50px;
+}
+
+.qty-button:hover:not(:disabled) {
+  background-color: #e7f3ff;
+  border-color: #007bff;
+}
+
+.qty-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quick-qty-buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.quick-qty-buttons button {
+  flex: 1;
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-qty-buttons button:hover:not(:disabled) {
+  background-color: #e7f3ff;
+  border-color: #007bff;
+}
+
+.quick-qty-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add to List Button */
+.add-to-list-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px dashed #28a745;
+  border-radius: 4px;
+  background-color: white;
+  color: #28a745;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.add-to-list-button:hover:not(:disabled) {
+  background-color: #28a745;
+  color: white;
+}
+
+.add-to-list-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Transaction List Preview */
+.transaction-list-preview {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.transaction-list-preview h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #495057;
+}
+
+.transaction-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.transaction-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  min-width: 40px;
+  text-align: center;
+}
+
+.transaction-badge.buy {
+  background-color: #dc3545;
+}
+
+.transaction-badge.sell {
+  background-color: #007bff;
+}
+
+.transaction-detail {
+  font-size: 13px;
+  color: #495057;
+}
+
+.remove-item-button {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+  color: #dc3545;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-item-button:hover:not(:disabled) {
+  color: #c82333;
+  transform: scale(1.2);
+}
+
+.remove-item-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.submit-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.cancel-button:disabled,
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.transaction-note {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #6c757d;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}

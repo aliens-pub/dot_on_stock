@@ -1,0 +1,223 @@
+.transaction-list-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.transaction-list-header h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.filter-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+  min-width: 200px;
+}
+
+.filter-input:focus {
+  border-color: #007bff;
+}
+
+.transaction-list-loading {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.no-transactions {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 16px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transaction-item {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.transaction-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.transaction-item.buy {
+  border-left: 4px solid #dc3545;
+  background-color: #fff5f5;
+}
+
+.transaction-item.sell {
+  border-left: 4px solid #007bff;
+  background-color: #f0f8ff;
+}
+
+.transaction-main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.transaction-type-badge {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  min-width: 60px;
+  text-align: center;
+}
+
+.transaction-item.buy .transaction-type-badge {
+  background-color: #dc3545;
+  color: white;
+}
+
+.transaction-item.sell .transaction-type-badge {
+  background-color: #007bff;
+  color: white;
+}
+
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+
+.transaction-ticker {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.transaction-date {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.transaction-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.transaction-quantity {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.transaction-price {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.transaction-total {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.transaction-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #218838;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .transaction-list-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-input {
+    width: 100%;
+  }
+
+  .transaction-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .transaction-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transaction-numbers {
+    align-items: flex-start;
+  }
+
+  .transaction-actions {
+    margin-left: 0;
+    justify-content: stretch;
+  }
+
+  .edit-button,
+  .delete-button {
+    flex: 1;
+  }
+}
