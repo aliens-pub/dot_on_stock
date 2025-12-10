@@ -1,22 +1,10 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
-}
-
+/* App Container */
 .App {
   min-height: 100vh;
+  position: relative;
 }
 
+/* Header Styles - Glassmorphism */
 .App-header {
   position: relative;
   background-color: #f5f0e8;
@@ -34,6 +22,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .header-title {
@@ -42,8 +32,8 @@ body {
 }
 
 .App-header h1 {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   margin: 0;
   margin-bottom: 10px;
   color: #1a1a2e;
@@ -55,6 +45,7 @@ body {
   color: #4a4a5a;
 }
 
+/* Auth Section */
 .header-auth {
   display: flex;
   align-items: center;
@@ -63,23 +54,40 @@ body {
 .user-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .username {
-  font-size: 16px;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #1a1a2e;
 }
 
 .auth-button {
-  padding: 10px 24px;
-  font-size: 16px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.auth-button:hover::before {
+  left: 100%;
 }
 
 .login-button {
@@ -104,25 +112,43 @@ body {
   transform: translateY(-2px);
 }
 
+/* Main Content Area */
 .App-main {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 24px;
+  animation: fadeIn 0.5s ease;
 }
 
+/* Error Message */
 .error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 15px 20px;
-  border-radius: 4px;
-  margin: 20px 0;
-  border: 1px solid #f5c6cb;
+  background: linear-gradient(135deg, var(--danger-light) 0%, rgba(239, 68, 68, 0.05) 100%);
+  color: var(--danger-color);
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  margin: 24px 0;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideIn 0.3s ease;
+  font-weight: 500;
 }
 
+.error-message::before {
+  content: '⚠';
+  font-size: 1.25rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  .App-header {
+    padding: 40px 16px;
+  }
+
   .header-content {
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
 
   .header-title {
@@ -130,19 +156,33 @@ body {
   }
 
   .App-header h1 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .App-header p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .App-main {
-    padding: 10px;
+    padding: 20px 16px;
   }
 
   .user-info {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+  }
+
+  .auth-button {
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .App-main {
+    padding: 16px 12px;
   }
 }
