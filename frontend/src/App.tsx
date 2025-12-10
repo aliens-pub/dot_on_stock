@@ -7,6 +7,7 @@ import StockInfo from './components/StockInfo';
 import LoginModal from './components/LoginModal';
 import TransactionModal from './components/TransactionModal';
 import PortfolioSummary from './components/PortfolioSummary';
+import StockChartBackground from './components/StockChartBackground';
 import stockApi from './services/stockApi';
 import { useAuth } from './contexts/AuthContext';
 import { StockInfo as StockInfoType, StockHistoryData, TransactionInput } from './types';
@@ -119,6 +120,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <StockChartBackground />
         <div className="header-content">
           <div className="header-title">
             <h1>주식 시세 조회</h1>
