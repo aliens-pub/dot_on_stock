@@ -1,0 +1,110 @@
+.stock-chart-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Grid lines */
+.grid-line {
+  stroke: rgba(180, 160, 140, 0.3);
+  stroke-width: 1;
+}
+
+/* Stock price line */
+.stock-line {
+  stroke: rgba(80, 120, 180, 0.6);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Animation setup - line drawing effect */
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLine 2.5s ease-out forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Dots - initially invisible */
+.chart-dot {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.blue-dot {
+  fill: #3b82f6;
+}
+
+.red-dot {
+  fill: #ef4444;
+}
+
+/* Pop animation for each dot with staggered delay */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Staggered delays for each dot - starts after line animation begins */
+.dot-0 {
+  animation: popIn 0.4s ease-out 0.4s forwards;
+}
+
+.dot-1 {
+  animation: popIn 0.4s ease-out 0.65s forwards;
+}
+
+.dot-2 {
+  animation: popIn 0.4s ease-out 0.9s forwards;
+}
+
+.dot-3 {
+  animation: popIn 0.4s ease-out 1.1s forwards;
+}
+
+.dot-4 {
+  animation: popIn 0.4s ease-out 1.35s forwards;
+}
+
+.dot-5 {
+  animation: popIn 0.4s ease-out 1.55s forwards;
+}
+
+.dot-6 {
+  animation: popIn 0.4s ease-out 1.8s forwards;
+}
+
+.dot-7 {
+  animation: popIn 0.4s ease-out 2.0s forwards;
+}
+
+.dot-8 {
+  animation: popIn 0.4s ease-out 2.2s forwards;
+}
+
+.dot-9 {
+  animation: popIn 0.4s ease-out 2.4s forwards;
+}
