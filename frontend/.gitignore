@@ -24,3 +24,5 @@ yarn-error.log*
 
 # Python virtual environment (if exists)
 venv/
+
+./.claude
