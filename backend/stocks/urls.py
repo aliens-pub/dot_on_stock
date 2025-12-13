@@ -16,4 +16,5 @@ urlpatterns = [
     path('transactions/', views.transaction_list, name='transaction-list'),
     path('transactions/<int:pk>/', views.transaction_detail, name='transaction-detail'),
     path('transactions/portfolio/', views.portfolio_summary, name='portfolio-summary'),
+    path('transactions/portfolio/export/', views.export_portfolio_csv, name='portfolio-export'),
 ]

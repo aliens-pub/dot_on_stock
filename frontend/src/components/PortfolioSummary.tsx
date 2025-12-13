@@ -30,6 +30,15 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ refreshTrigger = 0 
     }
   };
 
+  const handleExportCSV = async (): Promise<void> => {
+    try {
+      await stockApi.exportPortfolioCSV();
+    } catch (err) {
+      alert('CSV 내보내기에 실패했습니다');
+      console.error('Error exporting CSV:', err);
+    }
+  };
+
   if (loading) {
     return <div className="portfolio-loading">포트폴리오 로딩 중...</div>;
   }
@@ -55,7 +64,12 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ refreshTrigger = 0 
 
   return (
     <div className="portfolio-container">
-      <h3>포트폴리오 요약</h3>
+      <div className="portfolio-header">
+        <h3>포트폴리오 요약</h3>
+        <button className="export-button" onClick={handleExportCSV}>
+          CSV 내보내기
+        </button>
+      </div>
 
       <div className="portfolio-summary-cards">
         <div className="summary-card">

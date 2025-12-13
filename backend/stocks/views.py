@@ -8,7 +8,9 @@ from datetime import datetime, timedelta
 import pandas as pd
 from django.contrib.auth import login, logout
 from django.db.models import Sum, Q
+from django.http import HttpResponse
 from decimal import Decimal
+import csv
 from .models import User, Transaction
 from .serializers import UserSerializer, TransactionSerializer, TransactionCreateSerializer
 
@@ -405,3 +407,81 @@ def portfolio_summary(request):
             'total_profit_loss_percent': float(total_profit_loss_percent),
         }
     }, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def export_portfolio_csv(request):
+    """
+    Export portfolio data to CSV format
+    """
+    user_id = request.session.get('user_id')
+
+    if not user_id:
+        return Response(
+            {'error': 'Not logged in'},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
+
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Response(
+            {'error': 'User not found'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    # Get all transactions
+    transactions = Transaction.objects.filter(user=user)
+
+    # Calculate holdings by ticker
+    holdings = {}
+    for txn in transactions:
+        if txn.ticker not in holdings:
+            holdings[txn.ticker] = {
+                'ticker': txn.ticker,
+                'quantity': 0,
+                'total_cost': Decimal('0.00'),
+            }
+
+        if txn.transaction_type == 'BUY':
+            holdings[txn.ticker]['quantity'] += txn.quantity
+            holdings[txn.ticker]['total_cost'] += Decimal(str(txn.price)) * txn.quantity
+        else:  # SELL
+            holdings[txn.ticker]['quantity'] -= txn.quantity
+            holdings[txn.ticker]['total_cost'] -= Decimal(str(txn.price)) * txn.quantity
+
+    # Create CSV response
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="portfolio_{user.username}_{datetime.now().strftime("%Y%m%d")}.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Ticker', 'Quantity', 'Avg Price', 'Current Price', 'Total Cost', 'Current Value', 'Profit/Loss', 'Profit/Loss %'])
+
+    for ticker, holding in holdings.items():
+        if holding['quantity'] > 0:  # Only include stocks still owned
+            avg_price = holding['total_cost'] / holding['quantity'] if holding['quantity'] > 0 else Decimal('0.00')
+
+            # Fetch current price
+            try:
+                stock = yf.Ticker(ticker)
+                info = stock.info
+                current_price = Decimal(str(info.get('currentPrice') or info.get('regularMarketPrice', 0)))
+            except:
+                current_price = Decimal('0.00')
+
+            current_value = current_price * holding['quantity']
+            profit_loss = current_value - holding['total_cost']
+            profit_loss_percent = (profit_loss / holding['total_cost'] * 100) if holding['total_cost'] > 0 else Decimal('0.00')
+
+            writer.writerow([
+                ticker,
+                holding['quantity'],
+                f"{float(avg_price):.2f}",
+                f"{float(current_price):.2f}",
+                f"{float(holding['total_cost']):.2f}",
+                f"{float(current_value):.2f}",
+                f"{float(profit_loss):.2f}",
+                f"{float(profit_loss_percent):.2f}"
+            ])
+
+    return response

@@ -102,6 +102,37 @@ const stockApi = {
     }
   },
 
+  exportPortfolioCSV: async (): Promise<void> => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/transactions/portfolio/export/`, {
+        responseType: 'blob',
+      });
+
+      // Create a download link
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+
+      // Extract filename from Content-Disposition header or use default
+      const contentDisposition = response.headers['content-disposition'];
+      let filename = 'portfolio_export.csv';
+      if (contentDisposition) {
+        const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+        if (filenameMatch && filenameMatch[1]) {
+          filename = filenameMatch[1];
+        }
+      }
+
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      return handleError(error);
+    }
+  },
+
   // Stock data APIs
   getStockInfo: async (ticker: string): Promise<StockInfo> => {
     try {
